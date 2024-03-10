@@ -1,7 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
+
+#include "morse_translator.h"
 
 /*
         Morse code representations for english letters,
@@ -18,20 +16,9 @@
 #include "morse_space.h"
 
 
-char*
-toUpperCase( char* s )
-{
-        for( char* p = s; *p; p++ ) 
-        {
-                *p = toupper( *p );
-        }
-
-        return s;
-}
-
 /*
         copy_morse_char() will copy a letter's morse code
-        representation to the output buffer, 'output', and 
+        representation to the output buffer, 'dst', and 
         update the position index, 'pos'.
 
         If the current character we are translating for is
@@ -41,41 +28,41 @@ toUpperCase( char* s )
  */
 
 void
-copy_morse_char( const char* p, char* output, int* pos, char* morse_char )
+copy_morse_char( char* dst, const char* src, int* pos, char* morse_char )
 {
         int morse_char_size = strlen( morse_char );
-        strcpy( &output[ *pos ], morse_char );
+        strcpy( &dst[ *pos ], morse_char );
 
-        if ( *(p+1) != '\0' )
+        if ( *(src+1) != '\0' )
         {
-                strcpy( &output[ *pos + morse_char_size ], " " );
+                strcpy( &dst[ *pos + morse_char_size ], " " );
         }
 
         *pos += morse_char_size + 1;
 }
 
 char*
-get_morse_char( const char* p )
+get_morse_char( const char* ascii_char )
 {
-        if ( isdigit( *p ) )
+        if ( isdigit( *ascii_char ) )
         {
-                return get_num_morse_char( p );
+                return get_num_morse_char( ascii_char );
         }
-        else if ( isalpha( *p ) )
+        else if ( isalpha( *ascii_char ) )
         {
-                return get_alpha_morse_char( p );
+                return get_alpha_morse_char( ascii_char );
         }
-        else if ( isPunctuation( p ) )
+        else if ( isPunctuation( ascii_char ) )
         {
-                return get_punc_morse_char( p );
+                return get_punc_morse_char( ascii_char );
         }
-        else if ( *p == ' ' )
+        else if ( *ascii_char == ' ' )
         {
-                return get_space_morse_char( p );
+                return get_space_morse_char();
         }
         else
         {
-                printf( "Error: input character %c is not a letter or digit!\n", *p );
+                printf( "Error: input character %c is not a letter or digit!\n", *ascii_char );
                 exit( 1 );
         }
 
@@ -94,6 +81,7 @@ get_morse_char( const char* p )
         is used for a literal space character ( a ' ' ). This 
         is done purely for formatting purposes.
  */
+
 int
 get_output_size( const char* input )
 {
@@ -109,37 +97,17 @@ get_output_size( const char* input )
 }
 
 char*
-translator( const char* input )
+atom( char* output, const char* input )
 {
         int                     pos = 0;
-        int                     output_size = get_output_size( input );
-        char*                   output = ( char* ) malloc( output_size );
 
         for( const char* p = input; *p != '\0'; p++ )
         {
-                copy_morse_char( p, output, &pos, get_morse_char( p ) );
+                copy_morse_char( output, p, &pos, get_morse_char( p ) );
         }
 
         output[ pos - 1 ] = '\0';
 
         return output;
-}
-
-int
-main( int argc, char** argv )
-{
-        if ( argc != 2 )
-        {
-                printf( "Not enough args!\n" );
-                return 1;
-        }
-
-        char*                   input = argv[ 1 ];
-        char*                   output = translator( input );
-
-        printf( "Input: [%s]\n", input );
-        printf( "Output: [%s]\n", output );
-
-        free( output );
 }
 

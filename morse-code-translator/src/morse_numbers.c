@@ -1,5 +1,5 @@
-#ifndef __LIB_MORSE_NUMBERS_H__
-#define __LIB_MORSE_NUMBERS_H__
+
+#include "morse_numbers.h"
 
 char*                   morse_number_chars[] = {
 
@@ -9,10 +9,8 @@ char*                   morse_number_chars[] = {
 };
 
 char*
-get_num_morse_char( const char* p )
+get_num_morse_char( const char* ascii_char )
 {
-        return morse_number_chars[ *p - '0' ];
+        return morse_number_chars[ *ascii_char - '0' ];
 }
-
-#endif /* __LIB_MORSE_NUMBERS_H__ */
 

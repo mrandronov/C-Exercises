@@ -1,5 +1,5 @@
-#ifndef __LIB_MORSE_LETTERS_H__
-#define __LIB_MORSE_LETTERS_H__
+
+#include "morse_letters.h"
 
 char*                   morse_letter_chars[] = {
 
@@ -14,7 +14,7 @@ char*                   morse_letter_chars[] = {
 };
 
 char*
-get_alpha_morse_char( const char* p )
+get_alpha_morse_char( const char* ascii_char )
 {
         /*
                 The alphabet is consecutive in ASCII, so we
@@ -28,18 +28,16 @@ get_alpha_morse_char( const char* p )
 
         int             index = 0;
 
-        if ( *p >= 97 )
+        if ( *ascii_char >= 97 )
         {
                 /* p is lowercase */
-                index = *p - 'a';
+                index = *ascii_char - 'a';
         }
         else
         {
-                index = *p - 'A';
+                index = *ascii_char - 'A';
         }
 
         return morse_letter_chars[ index ];
 }
-
-#endif /* __LIB_MORSE_LETTERS_H__ */
 

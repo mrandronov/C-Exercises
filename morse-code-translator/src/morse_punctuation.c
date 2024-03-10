@@ -1,5 +1,5 @@
-#ifndef __LIB_MORSE_PUNCTUATION_H__
-#define __LIB_MORSE_PUNCTUATION_H__
+
+#include "morse_punctuation.h"
 
 /*
         What counts as punctuation varies
@@ -15,19 +15,23 @@
 #define NUM_MORSE_PUNCTUATION_CHARS 17
 
 int                     morse_punc_lookup[] = {
+
        '.', ',', '?', '\'', 
        '!', '/', '(', ')', 
        '&', ':', ';', '=', 
        '+', '-', '_', '\'', 
        '$'
+
 };
 
 char*                   morse_punc_chars[] = {
+
         /* . */ ".-.-.-", /* , */ "--..--", /* ? */ "..--..", /* ' */ ".----.",
         /* ! */ "-.-.--", /* / */ "-..-.", /* ( */ "-.--.", /* ) */ "-.--.-",
         /* & */ ".-...", /* : */ "---...", /* ; */ "-.-.-.", /* = */ "-...-",
         /* + */ ".-.-.", /* - */ "-....-", /* _ */ "..--.-", /* " */ ".-..-.",
         /* $ */ "...-..-"
+
 };
 
 int
@@ -59,11 +63,10 @@ getPunctuationIndex( const char* s )
 }
 
 char*
-get_punc_morse_char( const char* p )
+get_punc_morse_char( const char* ascii_char )
 {
-        return morse_punc_chars[ getPunctuationIndex( p ) ];
+        return morse_punc_chars[ getPunctuationIndex( ascii_char ) ];
 }
 
 
-#endif /* __LIB_MORSE_PUNCTUATION_H__ */
 
