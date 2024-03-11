@@ -1,0 +1,19 @@
+18
+# Introduction to Car Maintenance
+## Importance of Regular Maintenance
+Proper maintenance ensures safety, reliability, and longevity of your vehicle.
+# Basic Maintenance Tasks
+## Fluid Checks and Replacements
+Check and replace engine oil, coolant, and other fluids as recommended.
+## Tire Maintenance
+Monitor tire pressure, tread depth, and rotate tires regularly.
+# Advanced Maintenance
+## Brake System
+Inspect and replace brake pads and rotors as needed.
+## Engine and Transmission
+Perform tune-ups, replace filters, and check for leaks or worn components.
+# Seasonal Maintenance
+## Summer Preparation
+Check the air conditioning system and prepare for hot weather conditions.
+## Winter Preparation
+Equip your vehicle with appropriate tires and check the heating system.
