@@ -16,6 +16,7 @@ LIB_DIR := ./lib
 all: $(LIB_DIR)/libMorseTranslator.so $(TRANSL_SRCS) translator
 
 $(LIB_DIR)/libMorseTranslator.so: $(MORSE_SRCS)
+	@mkdir -p $(LIB_DIR)
 	gcc -fPIC -shared -I$(INC_DIR) -o $(LIB_DIR)/libMorseTranslator.so $(MORSE_SRCS) 
 
 translator: $(TRANSL_SRCS)
