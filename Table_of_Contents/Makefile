@@ -22,6 +22,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(INC_FLAGS) -c $^ -o $@
 
 $(LIB_DIR)/libTableOfContents.so: $(TOC_OBJS)
+	@mkdir -p $(LIB_DIR)
 	$(CC) -fPIC -shared $(INC_FLAGS) -o $(LIB_DIR)/libTableOfContents.so $(TOC_OBJS)
 
 main: $(MAIN_OBJS)
